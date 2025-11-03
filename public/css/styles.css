@@ -118,9 +118,11 @@ body {
 
 .upgrades img {
   width: 100%;
-  max-width: 50px;
+  max-width: 100px;
   height: auto;
   margin-bottom: 10px;
+  background-color: lightskyblue;
+  padding: 10px 30px;
 }
 
 .upgrades a {
