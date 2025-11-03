@@ -4,3 +4,139 @@
 *:after {
   box-sizing: border-box;
 }
+
+/******* Body Styles ***************/
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  padding: 0;
+  background-color: white;
+  color: #333;
+}
+
+/******* Header Styles ***************/
+#top-header {
+  display: flex;
+  color: white;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+
+#top-header a {
+  color: black;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+#top-header .siteName {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/******* Navigation Styles ***************/
+#navigation {
+  background-color: #000;
+  padding: 10px 0;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.welcome {
+  margin-right: 20px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.welcome img {
+  vertical-align: middle;
+  max-width: 400px;
+  height: auto;
+}
+
+.cta {
+  position: absolute;
+  top: 35%;
+  right: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.85);
+  color: lightskyblue;
+  padding: 5px;
+  border-radius: 5px;
+  max-width: 200px;
+}
+
+.cta-button {
+  width: 50%;
+}
+
+/* Reviews and Upgrades layout */
+.content-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Default styles for small screens (less than 100px) */
+.reviews, .upgrades-section {
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.upgrades h2 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.upgrades ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.upgrades li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.upgrades img {
+  width: 100%;
+  max-width: 50px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.upgrades a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.upgrades a:hover {
+  color: lightskyblue;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #000;
+  color: white;
+  margin-top: 20px;
+}
