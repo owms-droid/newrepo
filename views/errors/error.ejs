@@ -1,0 +1,12 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Error</h1>
+<% } %>
+
+<!-- Display the error message unescaped so HTML in the message renders -->
+<% if (typeof message !== 'undefined') { %>
+    <div class="error-message">
+        <%- message %>
+    </div>
+<% } %>
