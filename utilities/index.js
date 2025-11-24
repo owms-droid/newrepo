@@ -57,6 +57,43 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the vehicle detail HTML
+* ************************************ */
+Util.buildVehicleDetailHTML = async function (vehicle) {
+  if (!vehicle) return ''
+  //small escape helper
+  const escapeHTML = (s) => 
+    s === null || s === undefined ? '' : String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;')
+  
+  const price = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price)
+  const miles = new Intl.NumberFormat('en-US').format(vehicle.inv_miles)
+
+  let html = ''
+  html += '<div class="vehicle-media">'
+  // medua column
+  html += `<img src="${escapeHTML(vehicle.inv_image)}" alt="Image of ${escapeHTML(vehicle.inv_make)} ${escapeHTML(vehicle.inv_model)} on CSE Motors" />`
+  html += '</div>'
+  // info column
+  html += '<div class="vehicle-info">'
+  html += `<h2>${escapeHTML(vehicle.inv_year)} ${escapeHTML(vehicle.inv_make)} ${escapeHTML(vehicle.inv_model)}</h2>`
+  html += `<p class="price">${price}</p>`
+  html += '<ul class="vehicle-meta">'
+  html += `<li><strong>Mileage:</strong> ${miles} miles</li>`
+  if (vehicle.inv_color) html += `<li><strong>Color:</strong> ${escapeHTML(vehicle.inv_color)}</li>`
+  if (vehicle.classification_name) html += `<li><strong>Classification:</strong> ${escapeHTML(vehicle.classification_name)}</li>`
+  html += '</ul>'
+  if (vehicle.inv_description) html += `<div class="vehicle-description"><p>${escapeHTML(vehicle.inv_description)}</p></div>`
+  html += '</div>' // .vehicle-info
+  html += '</div>' // .vehicle-detail
+  
+  return html
+}
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
