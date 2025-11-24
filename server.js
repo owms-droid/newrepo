@@ -20,7 +20,9 @@ const accountRoute = require("./routes/accountRoute")
 /* ***********************
  * Middleware
  * ************************/
- app.use(session({
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
     pool,
@@ -29,11 +31,11 @@ const accountRoute = require("./routes/accountRoute")
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
- }))
+}))
 
- // Express Messages Middleware
+// Express Messages Middleware
 app.use(require('connect-flash')())
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
@@ -57,7 +59,7 @@ app.use("/inv", inventoryRoute)
 app.use("/account", require("./routes/accountRoute"))
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+  next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
 })
 
 /* ***********************
@@ -67,7 +69,7 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  if (err.status == 404) { message = err.message } else { message = 'Oh no! There was a crash. Maybe try a different route?' }
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
