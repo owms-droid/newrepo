@@ -67,7 +67,13 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
+  let nav
+  try {
+    nav = await utilities.getNav()
+  } catch (error) {
+    console.error("Error getting nav in error handler", error)
+    nav = '<ul><li><a href="/">Home</a></li></ul>'
+  }
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if (err.status == 404) { message = err.message } else { message = 'Oh no! There was a crash. Maybe try a different route?' }
   res.render("errors/error", {
