@@ -72,5 +72,3 @@ async function registerAccount(req, res) {
 }
 
 module.exports = { buildLogin, buildRegister, registerAccount }
-
-/* You are here, continue from this file*/

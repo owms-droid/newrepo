@@ -17,40 +17,42 @@
                             <%# message %>
                         </div>
                         <% } %> -->
-                        <% if (errors) { %>
-                            <ul class="notice">
-                                <% errors.array().forEach(error=> { %>
-                                    <li>
-                                        <%= error.msg %>
-                                    </li>
-                                    <% }) %>
-                            </ul>
-                            <% } %>
+                    <% if (errors) { %>
+                        <ul class="notice">
+                            <% errors.array().forEach(error=> { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
 
-                            <form action="/account/register" method="POST" class="register-form" novalidate>
+                            <form action="/account/register" method="POST" class="login-form" novalidate>
                                 <div>
                                     <label for="account_firstname">First name</label>
                                     <input id="account_firstname" name="account_firstname" type="text"
-                                        placeholder="John" required />
+                                        placeholder="John" required value="<%= locals.account_firstname %>" />
                                 </div>
 
                                 <div>
                                     <label for="account_lastname">Last name</label>
-                                    <input id="account_lastname" name="account_lastname" type="text"
-                                        placeholder="Doe" required />
+                                    <input id="account_lastname" name="account_lastname" type="text" placeholder="Doe"
+                                        required value="<%= locals.account_lastname %>" />
                                 </div>
 
                                 <div>
                                     <label for="account_email">Email address</label>
                                     <input id="account_email" name="account_email" type="email"
-                                        placeholder="you@example.com" required />
+                                        placeholder="you@example.com" required value="<%= locals.account_email %>" />
                                 </div>
 
                                 <div>
                                     <label for="account_password">Password</label>
-                                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1
+                                        capital letter and 1 special character</span>
                                     <input id="account_password" name="account_password" type="password"
-                                        placeholder="Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"/>
+                                        placeholder="Password" required
+                                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" />
                                 </div>
 
                                 <div>
@@ -58,6 +60,6 @@
                                 </div>
                             </form>
 
-                            <p>
+                            <p class="signup-link">
                                 Already have an account? <a href="/account/login">Login</a>
                             </p>

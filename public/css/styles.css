@@ -337,11 +337,11 @@ body {
 .signup-link {
   text-align: center;
   margin-top: 14px;
-  color: #e6eef8;
+  color: #232323;
 }
 
 .signup-link a {
-  color: #cfe3ff;
+  color: #069353;
   font-weight: 700;
   text-decoration: underline;
 }

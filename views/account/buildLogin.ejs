@@ -18,7 +18,7 @@
                         </div>
                         <% } %>
 
-                            <form action="/account/login" method="POST" class="login-form" novalidate>
+                            <form id="loginForm" action="/account/login" method="POST" class="login-form" novalidate>
                                 <div>
                                     <label for="clientEmail">Email:</label>
                                     <input id="clientEmail" name="clientEmail" type="email"
@@ -37,6 +37,6 @@
                                 </div>
                             </form>
 
-                            <p>
+                            <p class="signup-link">
                                 No account? <a href="/account/register">Sign-up</a>
                             </p>
