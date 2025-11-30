@@ -4,6 +4,9 @@ const router = new express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 
+// Route to build account management view
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 // Route to build login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
@@ -14,12 +17,12 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
 )
 
-// Process the login attempt
+// Process the login request
 router.post(
-    "/login",
-    (req, res) => {
-        res.status(200).send("login process")
-    }
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 )
 
 module.exports = router
