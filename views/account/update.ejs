@@ -1,0 +1,76 @@
+<!-- Content for Update Account view -->
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { %>
+        <h1>Update Account Information</h1>
+        <% } %>
+
+            <%- messages() %>
+
+                <% if (errors) { %>
+                    <ul class="notice">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+
+                        <!-- Account Update Form -->
+                        <h2>Account Update</h2>
+                        <form action="/account/update" method="POST" class="login-form" novalidate>
+                            <div>
+                                <label for="account_firstname">First name:</label>
+                                <input id="account_firstname" name="account_firstname" type="text" placeholder="John"
+                                    required
+                                    value="<%= locals.account_firstname || locals.accountData.account_firstname %>" />
+                            </div>
+
+                            <div>
+                                <label for="account_lastname">Last name:</label>
+                                <input id="account_lastname" name="account_lastname" type="text" placeholder="Doe"
+                                    required
+                                    value="<%= locals.account_lastname || locals.accountData.account_lastname %>" />
+                            </div>
+
+                            <div>
+                                <label for="account_email">Email address:</label>
+                                <input id="account_email" name="account_email" type="email"
+                                    placeholder="you@example.com" required
+                                    value="<%= locals.account_email || locals.accountData.account_email %>" />
+                            </div>
+
+                            <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>" />
+
+                            <div>
+                                <input type="submit" value="Update Account" />
+                            </div>
+                        </form>
+
+                        <!-- Change Password Form -->
+                        <h2>Change Password</h2>
+                        <p>Enter a new password to change your current password. Leave blank to keep your current
+                            password.</p>
+                        <form action="/account/change-password" method="POST" class="login-form" novalidate>
+                            <div>
+                                <label for="account_password">New Password:</label>
+                                <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital
+                                    letter and 1 special character</span>
+                                <input id="account_password" name="account_password" type="password"
+                                    placeholder="New Password" required
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" />
+                            </div>
+
+                            <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>" />
+
+                            <div>
+                                <input type="submit" value="Change Password" />
+                            </div>
+                        </form>
+
+                        <p class="signup-link">
+                            <a href="/account/">Return to Account Management</a>
+                        </p>

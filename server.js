@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
 })
 
 /* ***********************
- * View Engine and Tempaltes
+ * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
@@ -78,6 +78,7 @@ app.use(async (err, req, res, next) => {
     nav = '<ul><li><a href="/">Home</a></li></ul>'
   }
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  let message
   if (err.status == 404) { message = err.message } else { message = 'Oh no! There was a crash. Maybe try a different route?' }
   res.render("errors/error", {
     title: err.status || 'Server Error',

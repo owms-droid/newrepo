@@ -12,31 +12,40 @@
             <% } %>
 
                 <% /* Flash/message area (unescaped or escaped as you prefer). Use escaped output for safety. */ %>
-                    <% if (typeof message !=='undefined' && message) { %>
-                        <div class="flash-message">
-                            <%= message %>
-                        </div>
-                        <% } %>
+                    <%- messages() %>
 
-                            <form id="loginForm" action="/account/login" method="POST" class="login-form" novalidate>
-                                <div>
-                                    <label for="clientEmail">Email:</label>
-                                    <input id="clientEmail" name="clientEmail" type="email"
-                                        placeholder="you@example.com" required />
-                                </div>
+                        <% if (errors) { %>
+                            <ul class="notice">
+                                <% errors.array().forEach(error=> { %>
+                                    <li>
+                                        <%= error.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
 
-                                <div>
-                                    <label for="clientPassword">Password:</label>
-                                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
-                                    <input id="clientPassword" name="clientPassword" type="password"
-                                        placeholder="Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"/>
-                                </div>
+                                <form id="loginForm" action="/account/login" method="POST" class="login-form"
+                                    novalidate>
+                                    <div>
+                                        <label for="clientEmail">Email:</label>
+                                        <input id="clientEmail" name="clientEmail" type="email"
+                                            placeholder="you@example.com" required />
+                                    </div>
 
-                                <div>
-                                    <button type="submit">Login</button>
-                                </div>
-                            </form>
+                                    <div>
+                                        <label for="clientPassword">Password:</label>
+                                        <span>Passwords must be at least 12 characters and contain at least 1 number, 1
+                                            capital letter and 1 special character</span>
+                                        <input id="clientPassword" name="clientPassword" type="password"
+                                            placeholder="Password" required
+                                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" />
+                                    </div>
 
-                            <p class="signup-link">
-                                No account? <a href="/account/register">Sign-up</a>
-                            </p>
+                                    <div>
+                                        <button type="submit">Login</button>
+                                    </div>
+                                </form>
+
+                                <p class="signup-link">
+                                    No account? <a href="/account/register">Sign-up</a>
+                                </p>

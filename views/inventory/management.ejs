@@ -1,17 +1,26 @@
 <% /* Content Heading */ %>
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else { %>
-        <h1>Vehicle Management</h1>
-        <% } %>
+    <% if (title) { %>
+        <h1>
+            <%= title %>
+        </h1>
+        <% } else { %>
+            <h1>Vehicle Management</h1>
+            <% } %>
 
-<% /* Flash Message Area */ %>
-<%- messages() %>
+                <% /* Flash Message Area */ %>
+                    <%- messages() %>
 
-<% /* Management Links */ %>
-<div class="management-links">
-    <ul>
-        <li><a href="/inv/add-classification">Add New Classification</a></li>
-        <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
-    </ul>
-</div>
+                        <% /* Management Links */ %>
+                            <div class="management-links">
+                                <ul>
+                                    <li><a href="/inv/add-classification">Add New Classification</a></li>
+                                    <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+                                </ul>
+                                <h2>Manage Inventory</h2>
+                                <p>Select a classification from the list below to manage its vehicles.</p>
+                                <%- classificationSelect %>
+                                    <table id="inventoryDisplay"></table>
+                                    <noscript>JavaScript must be enabled to use this page.</noscript>
+                            </div>
+
+                            <script src="../../js/inventory.js"></script>
